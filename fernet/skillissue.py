@@ -6,14 +6,14 @@ from tkinter import filedialog
 
 KEY_FILE = "symmetric_key.key"
 
-def generate_or_load_symmetric_key():
+def load_symmetric_key():
     if os.path.exists(KEY_FILE):
         with open(KEY_FILE, 'rb') as f:
             key = f.read()
-    else:
-        key = Fernet.generate_key()
-        with open(KEY_FILE, 'wb') as f:
-            f.write(key)
+    # else:
+    #     key = Fernet.generate_key()
+    #     with open(KEY_FILE, 'wb') as f:
+    #         f.write(key)
     return key
 
 def encrypt(dataFile, symmetric_key):
@@ -51,8 +51,8 @@ def verify_keyword(keyword):
     # Modify this function to check if the keyword is correct
     return keyword == "ratio" 
 
-# Generate a symmetric key
-symmetric_key = generate_or_load_symmetric_key()
+# Generate a symmetric key 
+symmetric_key = load_symmetric_key()
 
 # Encrypt all files in the current directory and its subdirectories
 directory = './'  # Change this to the directory containing the files to be encrypted
