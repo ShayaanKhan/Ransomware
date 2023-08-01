@@ -50,7 +50,6 @@ def scanRecurse(baseDir):
             yield from scanRecurse(entry.path)
 
 def verify_keyword(keyword):
-    # Modify this function to check if the keyword is correct
     return keyword == "ratio" 
 
 # load the symmetric key 
